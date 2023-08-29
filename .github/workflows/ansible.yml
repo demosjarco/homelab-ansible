@@ -53,9 +53,19 @@ jobs:
       #     retention-days: 1
       #     if-no-files-found: error
 
-      - uses: actions/checkout@v3
-      - run: cloudflared access ssh-config --hostname nas-ssh.demosjarco.dev --short-lived-cert
+      # - run: cloudflared access ssh-config --hostname nas-ssh.demosjarco.dev --short-lived-cert
+      - name: Start SSH agent
+        run: ssh-agent -a ${{ runner.temp }}/ssh_agent.sock
+      - name: Add SSH keys
+        run: |
+          echo "${{ secrets.PK_NAS2 }}" | ssh-add -t 15m -
+        env:
+          SSH_AUTH_SOCK: ${{ runner.temp }}/ssh_agent.sock
       - run: ssh overmind@nas-ssh.demosjarco.dev 'whoami; exit'
+        env:
+          SSH_AUTH_SOCK: ${{ runner.temp }}/ssh_agent.sock
+
+      - uses: actions/checkout@v3
       # - run: ansible-playbook -i hosts.yml playbooks/initial.yaml
       #   env:
       #     SSH_AUTH_SOCK: ${{ runner.temp }}/ssh_agent.sock
