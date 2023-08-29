@@ -39,7 +39,7 @@ jobs:
             <string>${{ secrets.CF_ZT_ST_SECRET }}</string>
           </dict>
           EOL'
-      - run: sudo systemclt start warp-svc.sevice
+      - run: sudo systemctl start warp-svc.sevice
       - run: warp-cli register
       - run: warp-cli connect
       - run: warp-cli account
