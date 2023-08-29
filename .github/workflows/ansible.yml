@@ -39,7 +39,6 @@ jobs:
           </dict>
           EOF'
       - run: sudo systemctl start warp-svc
-      - run: warp-cli teams-enroll-token -h
       - run: warp-cli --accept-tos register
       - run: warp-cli --accept-tos connect
       - run: warp-cli --accept-tos account
