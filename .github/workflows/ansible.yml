@@ -43,14 +43,6 @@ jobs:
       - run: warp-cli --accept-tos connect
       - run: warp-cli --accept-tos account
 
-      - name: Start SSH agent
-        run: ssh-agent -a ${{ runner.temp }}/ssh_agent.sock
-      - name: Add SSH keys
-        run: |
-          echo "${{ secrets.PK_NAS2 }}" | ssh-add -t 15m -
-        env:
-          SSH_AUTH_SOCK: ${{ runner.temp }}/ssh_agent.sock
-
       - uses: actions/checkout@v3
       # - run: ansible-playbook -i hosts.yml playbooks/initial.yaml
       #   env:
