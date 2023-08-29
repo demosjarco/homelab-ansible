@@ -19,11 +19,13 @@ jobs:
           egress-policy: audit # TODO: change to 'egress-policy: block' after couple of runs
       - run: curl https://pkg.cloudflareclient.com/pubkey.gpg | sudo gpg --yes --dearmor --output /usr/share/keyrings/cloudflare-warp-archive-keyring.gpg
       - run: echo "deb [arch=amd64 signed-by=/usr/share/keyrings/cloudflare-warp-archive-keyring.gpg] https://pkg.cloudflareclient.com/ $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/cloudflare-client.list
+      - run: curl -fsSL https://pkg.cloudflare.com/cloudflare-main.gpg | sudo tee /usr/share/keyrings/cloudflare-main.gpg >/dev/null
+      - run: echo "deb [signed-by=/usr/share/keyrings/cloudflare-main.gpg] https://pkg.cloudflare.com/cloudflared $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/cloudflared.list
       - run: sudo add-apt-repository --yes --update ppa:ansible/ansible
       - run: sudo apt update
       - uses: awalsh128/cache-apt-pkgs-action@v1
         with:
-          packages: ansible cloudflare-warp
+          packages: ansible cloudflare-warp cloudflared
 
       - run: sudo mkdir -p /var/lib/cloudflare-warp
       - name: Create XML file
