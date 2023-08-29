@@ -46,7 +46,6 @@ jobs:
       - run: warp-cli --accept-tos account
 
       - run: cloudflared access ssh-config --hostname nas-ssh.demosjarco.dev --short-lived-cert
-      - run: ssh overmind@nas-ssh.demosjarco.dev 'whoami; exit'
 
       - run: warp-diag
         if: ${{ always() }}
@@ -58,6 +57,7 @@ jobs:
           if-no-files-found: error
 
       - uses: actions/checkout@v3
+      - run: ssh overmind@nas-ssh.demosjarco.dev 'whoami; exit'
       # - run: ansible-playbook -i hosts.yml playbooks/initial.yaml
       #   env:
       #     SSH_AUTH_SOCK: ${{ runner.temp }}/ssh_agent.sock
