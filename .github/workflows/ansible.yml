@@ -54,6 +54,7 @@ jobs:
       #     if-no-files-found: error
 
       # - run: cloudflared access ssh-config --hostname nas-ssh.demosjarco.dev --short-lived-cert
+      - run: cloudflared access ssh-config --hostname nas-ssh.demosjarco.dev
       - name: Start SSH agent
         run: ssh-agent -a ${{ runner.temp }}/ssh_agent.sock
       - name: Add SSH keys
