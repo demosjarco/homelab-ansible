@@ -40,7 +40,7 @@ jobs:
           </dict>
           EOL'
       - run: sudo systemctl start warp-svc
-      - run: warp-cli register
+      - run: warp-cli register --accept-tos
       - run: warp-cli connect
       - run: warp-cli account
 
