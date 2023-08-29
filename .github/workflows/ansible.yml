@@ -29,7 +29,6 @@ jobs:
         run: |
           sudo mkdir -p /var/lib/cloudflare-warp
           sudo bash -c 'cat <<EOL > /var/lib/cloudflare-warp/mdm.xml
-          <?xml version="1.0" encoding="UTF-8"?>
           <dict>
             <key>organization</key>
             <string>${{ vars.CF_ZT_ST_ORG }}</string>
