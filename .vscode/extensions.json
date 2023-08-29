@@ -1,6 +1,7 @@
 {
 	"recommendations": [
 		"redhat.ansible",
-		"coolbear.systemd-unit-file"
+		"coolbear.systemd-unit-file",
+		"github.vscode-github-actions"
 	]
 }
