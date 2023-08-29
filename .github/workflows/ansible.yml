@@ -41,6 +41,7 @@ jobs:
           EOL'
       - run: warp-cli register
       - run: warp-cli connect
+      - run: warp-cli account
 
       - name: Start SSH agent
         run: ssh-agent -a ${{ runner.temp }}/ssh_agent.sock
