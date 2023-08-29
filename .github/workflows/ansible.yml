@@ -58,3 +58,4 @@ jobs:
       #     SSH_AUTH_SOCK: ${{ runner.temp }}/ssh_agent.sock
 
       - run: rm -rfv /var/lib/cloudflare-warp/mdm.xml
+        if: ${{ always() }}
