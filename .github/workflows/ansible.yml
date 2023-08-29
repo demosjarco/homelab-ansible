@@ -45,13 +45,13 @@ jobs:
       - run: warp-cli --accept-tos connect
       - run: warp-cli --accept-tos account
 
-      - run: warp-diag
-        if: ${{ always() }}
-      - uses: actions/upload-artifact@v3
-        with:
-          path: warp-debugging-info*
-          retention-days: 1
-          if-no-files-found: error
+      # - run: warp-diag
+      #   if: ${{ always() }}
+      # - uses: actions/upload-artifact@v3
+      #   with:
+      #     path: warp-debugging-info*
+      #     retention-days: 1
+      #     if-no-files-found: error
 
       - uses: actions/checkout@v3
       - run: cloudflared access ssh-config --hostname nas-ssh.demosjarco.dev --short-lived-cert
