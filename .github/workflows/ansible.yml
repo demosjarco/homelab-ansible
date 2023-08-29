@@ -56,3 +56,5 @@ jobs:
       # - run: ansible-playbook -i hosts.yml playbooks/initial.yaml
       #   env:
       #     SSH_AUTH_SOCK: ${{ runner.temp }}/ssh_agent.sock
+
+      - run: rm -rfv /var/lib/cloudflare-warp/mdm.xml
