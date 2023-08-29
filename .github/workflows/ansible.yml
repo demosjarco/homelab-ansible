@@ -28,7 +28,7 @@ jobs:
       - run: sudo mkdir -p /var/lib/cloudflare-warp
       - name: Create XML file
         run: |
-          sudo cat > /var/lib/cloudflare-warp/mdm.xml << EOF
+          sudo bash -c 'cat > /var/lib/cloudflare-warp/mdm.xml << EOF
           <dict>
             <key>organization</key>
             <string>${{ vars.CF_ZT_ST_ORG }}</string>
@@ -37,7 +37,7 @@ jobs:
             <key>auth_client_secret</key>
             <string>${{ secrets.CF_ZT_ST_SECRET }}</string>
           </dict>
-          EOF
+          EOF'
       - run: sudo systemctl start warp-svc
       - run: warp-cli --accept-tos register
       - run: warp-cli --accept-tos connect
