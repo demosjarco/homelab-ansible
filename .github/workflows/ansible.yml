@@ -42,7 +42,7 @@ jobs:
       - run: sudo systemctl start warp-svc
       - run: warp-cli --accept-tos register
       - run: warp-cli --accept-tos connect
-      - run: warp-cli account
+      - run: warp-cli --accept-tos account
 
       - name: Start SSH agent
         run: ssh-agent -a ${{ runner.temp }}/ssh_agent.sock
