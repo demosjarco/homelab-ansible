@@ -18,7 +18,6 @@ jobs:
         with:
           egress-policy: audit # TODO: change to 'egress-policy: block' after couple of runs
       - uses: actions/checkout@v3
-      - run: apt cache policy software-properties-common
       - run: sudo add-apt-repository --yes --update ppa:ansible/ansible
       - run: sudo apt update
       - uses: awalsh128/cache-apt-pkgs-action@v1
