@@ -6,6 +6,7 @@
         autoclean: yes
         autoremove: yes
         pkg:
+        - curl
         - htop
         - iftop
         - ufw
