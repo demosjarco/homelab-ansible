@@ -1,0 +1,25 @@
+name: Publish
+
+on:
+  push:
+    paths:
+      - '.github/workflows/ansible.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref_name }}
+  cancel-in-progress: false
+
+jobs:
+  ansible:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: step-security/harden-runner@v1
+        with:
+          egress-policy: audit # TODO: change to 'egress-policy: block' after couple of runs
+      - uses: actions/checkout@v3
+      - run: sudo add-apt-repository --yes --update ppa:ansible/ansible
+      - run: sudo apt update
+      - uses: awalsh128/cache-apt-pkgs-action@v1
+        with:
+          packages: ansible
