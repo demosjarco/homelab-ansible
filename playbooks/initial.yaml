@@ -1,0 +1,13 @@
+- name: Setup APT & packages initially
+  hosts: all
+  tasks:
+    - name: Install System Packages
+      apt:
+        autoclean: yes
+        autoremove: yes
+        pkg:
+        - htop
+        - iftop
+        - ufw
+        state: latest
+        update_cache: yes
