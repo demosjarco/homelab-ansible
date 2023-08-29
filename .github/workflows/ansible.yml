@@ -25,7 +25,22 @@ jobs:
         with:
           packages: ansible cloudflare-warp
 
-      - run: warp-cli teams-enroll -h
+      - name: Create XML file
+        run: |
+          sudo mkdir -p /var/lib/cloudflare-warp
+          sudo bash -c 'cat <<EOL > /var/lib/cloudflare-warp/mdm.xml
+          <?xml version="1.0" encoding="UTF-8"?>
+          <dict>
+            <key>organization</key>
+            <string>${{ vars.CF_ZT_ST_ORG }}</string>
+            <key>auth_client_id</key>
+            <string>${{ vars.CF_ZT_ST_ID }}</string>
+            <key>auth_client_secret</key>
+            <string>${{ secrets.CF_ZT_ST_SECRET }}</string>
+          </dict>
+          EOL'
+      - run: warp-cli register
+      - run: warp-cli connect
 
       - name: Start SSH agent
         run: ssh-agent -a ${{ runner.temp }}/ssh_agent.sock
