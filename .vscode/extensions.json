@@ -1,0 +1,6 @@
+{
+	"recommendations": [
+		"redhat.ansible",
+		"coolbear.systemd-unit-file"
+	]
+}
