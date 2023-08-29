@@ -51,6 +51,7 @@ jobs:
       - run: warp-diag
         if: ${{ always() }}
       - uses: actions/upload-artifact@v3
+        if: ${{ always() }}
         with:
           path: warp-debugging-info*
           retention-days: 1
