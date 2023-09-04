@@ -56,7 +56,7 @@ jobs:
           retention-days: 1
           if-no-files-found: error
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - run: ssh overmind@nas-ssh.demosjarco.dev 'whoami; exit'
       # - run: ansible-playbook -i hosts.yml playbooks/initial.yaml
       #   env:
